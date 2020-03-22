@@ -5,10 +5,12 @@ set +e
 PREFIX=$2
 
 if [ -z $1 ] || [ -z $PREFIX ]; then
-	echo "ERROR tgt=$1 prefix=${PREFIX}" > /dev/stderr
+	echo "ERROR tgt=$1 prefix=${PREFIX} $2" > /dev/stderr
 	exit 1
 fi
 
+echo "ERROR tgt=$1 prefix=${PREFIX}" > /dev/stderr
+	
 CLANG_PREFIX=/usr/bin
 LINKSPEC="
 	clang ${CLANG_PREFIX}/clang

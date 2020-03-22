@@ -8,8 +8,8 @@ x86_64-apple-darwin14
 x86_64-apple-darwin17
 "
 
-
-if [ -z $P{PREFIX} ]; then
+PREFIX=
+if [ -z ${PREFIX} ]; then
 	PREFIX=/usr/local
 fi
 
