@@ -1,0 +1,35 @@
+#!/bin/bash
+
+set +e
+
+PREFIX=$2
+
+if [ -z $1 ] || [ -z $PREFIX ]; then
+	echo "ERROR tgt=$1 prefix=${PREFIX}" > /dev/stderr
+	exit 1
+fi
+
+CLANG_PREFIX=/usr/bin
+LINKSPEC="
+	clang ${CLANG_PREFIX}/clang
+	clang++ ${CLANG_PREFIX}/clang++
+	cc ${CLANG_PREFIX}/clang
+	c++ ${CLANG_PREFIX}/clang++
+"
+
+make_clang_links() {
+	TARGET=$1
+	shift 1
+	while ! [ -z $1 ]; do		
+		NAME=$1
+		BIN=$2	
+		shift 2
+		ln -s ${BIN} ${PREFIX}/bin/${TARGET}-${NAME}
+	done
+}
+
+
+make install
+make_clang_links $1 ${LINKSPEC}
+
+

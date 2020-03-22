@@ -1,0 +1,28 @@
+#!/bin/bash
+
+set +e
+
+TARGETS="
+aarch64-apple-darwin14
+x86_64-apple-darwin14
+x86_64-apple-darwin17
+"
+
+
+if [ -z $P{PREFIX} ]; then
+	PREFIX=/usr/local
+fi
+
+export PREFIX
+
+for i in ${TARGETS}; do
+	mkdir build-${i}
+	cd build-${i}
+	../cctools/configure --target=$i --enable-tapi-support --enable-xar-support --prefix=${PREFIX}
+	make -j12	
+	sudo ../WDY_install "${i}" "${PREFIX}"
+	cd ..
+done
+
+
+
