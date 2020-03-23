@@ -13,6 +13,7 @@ echo "ERROR tgt=$1 prefix=${PREFIX}" > /dev/stderr
 	
 CLANG_PREFIX=/usr/bin
 LINKSPEC="
+	dsymutil ${CLANG_PREFIX}/dsymutil
 	clang ${CLANG_PREFIX}/clang
 	clang++ ${CLANG_PREFIX}/clang++
 	cc ${CLANG_PREFIX}/clang
