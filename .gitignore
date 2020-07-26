@@ -2,3 +2,4 @@
 *.lo
 build-*
 cctools/include/llvm-c/lto.h
+cctools/include/llvm-c/ExternC.h
